@@ -13,6 +13,7 @@ Componentes verificados e implementados:
 - PostgreSQL en ServerDockers, base `enredados`, schema dedicado `dh_equipos`;
 - backend/orquestación en n8n;
 - módulo **Equipamientos**;
+- módulo **Usuarios**;
 - categoría inicial **Estética**.
 
 ## Documentación
@@ -20,6 +21,7 @@ Componentes verificados e implementados:
 - [Arquitectura](docs/arquitectura.md)
 - [Seguridad y login](docs/seguridad-login.md)
 - [Módulo Equipamientos](docs/modulos/equipamientos.md)
+- [Módulo Usuarios](docs/modulos/usuarios.md)
 
 ## Convenciones
 
