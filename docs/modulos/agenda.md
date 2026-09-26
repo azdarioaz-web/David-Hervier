@@ -40,45 +40,56 @@ Confirmado el 2026-09-26:
 
 La implementación usa un ancla en la posición real de las acciones y resincroniza el estado durante `scroll`, `scrollend` y cambios de tamaño.
 
-## Semántica de Rechazar y Cancelar reserva
+## Acciones según estado de la reserva
 
-La API usa `dh_equipos.cambiar_estado_reserva`.
+La interfaz y el backend respetan una única etapa operativa por reserva.
 
-### Rechazar
+### `PENDIENTE_APROBACION`
 
-- acción API: `rechazar_reserva`;
-- sólo está permitida cuando la reserva está en `PENDIENTE_APROBACION`;
-- estado final: `RECHAZADA`;
-- libera los equipos de esa fecha eliminando sus filas activas de `agenda_equipos_dias`;
-- registra un evento de tipo `RECHAZO`;
-- la mensajería utiliza el evento `RECHAZO_RESERVA`.
+Acciones de Owner:
 
-Representa que el Owner **no acepta una solicitud que todavía estaba esperando aprobación**.
+- **Confirmar**
+- **Rechazar**
 
-### Cancelar reserva
+No se muestra **Cancelar reserva**.
 
-- acción API: `cancelar_reserva`;
-- está permitida para reservas en `PENDIENTE_APROBACION`, `CONFIRMADA` o `CANCELACION_PENDIENTE`;
-- estado final: `CANCELADA_OWNER`;
-- libera los equipos de esa fecha eliminando sus filas activas de `agenda_equipos_dias`;
-- registra un evento `CANCELACION_OWNER`;
-- la mensajería utiliza el evento `CANCELACION_OWNER`.
+`rechazar_reserva` cambia la reserva a `RECHAZADA`, libera los equipos de la fecha y registra el rechazo de una solicitud que nunca llegó a aprobarse.
 
-Representa que el Owner **anula una reserva**, independientemente de que todavía esté pendiente, ya haya sido confirmada o tenga una cancelación del cliente pendiente.
+### `CONFIRMADA`
 
-En una reserva que todavía está `PENDIENTE_APROBACION`, ambas acciones liberan el día, pero mantienen una diferencia importante de historial y significado: **Rechazar** registra que la solicitud no fue aceptada; **Cancelar reserva** registra una cancelación realizada por el Owner.
+Acción de Owner:
+
+- **Cancelar reserva**
+
+No se muestran **Confirmar** ni **Rechazar**.
+
+`cancelar_reserva` sólo está permitida en backend cuando la reserva está en `CONFIRMADA`. El estado final es `CANCELADA_OWNER`, se libera la fecha y se registra una cancelación realizada por el Owner.
+
+### `CANCELACION_PENDIENTE`
+
+Acciones de Owner:
+
+- **Aprobar cancelación**
+- **Rechazar cancelación**
+
+No se muestra **Cancelar reserva**, porque la reserva ya se encuentra dentro del proceso específico de cancelación solicitado por el cliente.
+
+## Regla de backend
+
+La función `dh_equipos.cambiar_estado_reserva` fue ajustada para que el estado destino `CANCELADA_OWNER` sólo sea válido cuando el estado actual es `CONFIRMADA`.
+
+Esto impide que una llamada directa a la API cancele como Owner una reserva que todavía está `PENDIENTE_APROBACION` o que ya está en `CANCELACION_PENDIENTE`.
 
 ## Validación
 
-La versión activa de `20 - Agenda - Vista` fue publicada y validada técnicamente con el HTML/JavaScript real del workflow cargado en Chrome DevTools con datos de prueba equivalentes a una reserva pendiente.
+El 2026-09-26 se verificó la versión publicada de `20 - Agenda - Vista` con los tres estados:
 
-Resultado técnico confirmado:
+- `PENDIENTE_APROBACION`: Confirmar visible, Rechazar visible, Cancelar reserva oculto.
+- `CONFIRMADA`: Confirmar oculto, Rechazar oculto, Cancelar reserva visible.
+- `CANCELACION_PENDIENTE`: Aprobar cancelación visible, Rechazar cancelación visible, Cancelar reserva oculto.
 
-- 3 botones presentes;
-- modo flotante al salir de la zona visible;
-- retorno correcto a la posición natural;
-- sin errores ni advertencias de consola en la prueba.
+También se verificó en PostgreSQL que `CANCELADA_OWNER` queda restringido a reservas `CONFIRMADA`.
 
-Validación funcional final:
+La prueba de interfaz no produjo errores ni advertencias de consola.
 
-- el 2026-09-26 Dario confirmó en la Agenda real que el comportamiento de los botones flotantes quedó correcto.
+El comportamiento flotante de los botones de aprobaciones había sido validado previamente en la Agenda real por Dario.
