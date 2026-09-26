@@ -23,6 +23,7 @@ Carpetas actuales:
 
 - `00 - Seguridad`
 - `10 - Equipamientos`
+- `20 - Agenda`
 
 No se reinicia n8n para aplicar cambios de workflows; las publicaciones se realizan en caliente.
 
