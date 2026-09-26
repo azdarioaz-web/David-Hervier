@@ -14,6 +14,7 @@ Componentes verificados e implementados:
 - backend/orquestación en n8n;
 - módulo **Equipamientos**;
 - módulo **Usuarios**;
+- módulo **Agenda**;
 - categoría inicial **Estética**.
 
 ## Documentación
@@ -22,6 +23,7 @@ Componentes verificados e implementados:
 - [Seguridad y login](docs/seguridad-login.md)
 - [Módulo Equipamientos](docs/modulos/equipamientos.md)
 - [Módulo Usuarios](docs/modulos/usuarios.md)
+- [Módulo Agenda](docs/modulos/agenda.md)
 
 ## Convenciones
 
