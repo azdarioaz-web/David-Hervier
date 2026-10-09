@@ -1,0 +1,70 @@
+# Contrato visual mínimo extraído de DH Equipos Estéticos
+# Fecha de relevamiento: 2026-10-09
+# Origen actual: HTML/CSS embebidos en vistas n8n; NO hay CSS externo cargado aún.
+project: DH-Equipos-esteticos
+status: existing_ui_extraction
+runtime:
+  workflow: "10 - Equipamientos - Vista"
+  workflow_id: "2UYNIvcCP2BRlqYO"
+  css_delivery: inline_n8n
+identity:
+  primary: "#143061"
+  primary_hover: "#1d437f"
+  surface: "#f9f8f8"
+  white: "#ffffff"
+  text: "#1f2a3d"
+  muted: "#7f8898"
+  border: "#d8dde6"
+  danger: "#a93838"
+  success: "#2e6b50"
+  warning: "#8a641c"
+typography:
+  family: "Open Sans, Arial, sans-serif"
+  page_title_px: 22
+  section_heading_px: 16
+  input_px: 13
+  table_px: 12
+components:
+  card:
+    class: card
+    border_radius_px: 6
+    padding_px: 18
+  button:
+    tag: button
+    border_radius_px: 5
+    height_px: 36
+  input:
+    tags: [input, select, textarea]
+    border_radius_px: 5
+    single_line_height_px: 38
+  field:
+    class: field
+    bottom_margin_px: 12
+  two_column_row:
+    class: row2
+    gap_px: 10
+  data_table:
+    class: table-wrap
+    min_table_width_px: 720
+  tab:
+    class: tab
+    active_class: active
+  system_modal:
+    element_id: sysModal
+    class: sys-dialog
+    native_alerts_prohibited: true
+layouts:
+  edit_and_list:
+    class: grid
+    desktop_columns: "minmax(320px,430px) minmax(0,1fr)"
+    gap_px: 18
+    collapses_under_px: 900
+  sidebar:
+    expanded_width_px: 228
+    compact_width_px: 62
+domain_rules:
+  equipamientos:
+    within_alquiler_tabs: [Equipos, Categorías]
+    equipo_form_is_single: true
+    separate_model_catalog: false
+    fields_use_existing_field_and_row2_classes: true
