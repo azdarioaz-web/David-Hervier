@@ -100,3 +100,13 @@ La causa confirmada era PostgreSQL:
 El workflow `50 - Usuarios - API` quedó publicado con el guardado principal y las preferencias de aprobación separados en nodos consecutivos.
 
 La corrección fue verificada por el usuario desde la interfaz modificando el email de un cliente existente.
+
+## Limpieza de usuarios y fichas — 09/10/2026
+
+Por indicación del propietario se eliminaron los accesos con rol `CLIENTE` (2) y `OPERADOR` (1), junto con las 7 fichas comerciales de clientes y sus 7 direcciones. No había reservas ni ocupaciones vinculadas. Las sesiones de los tres accesos eliminados se invalidaron por la FK `web_sessions.user_id ON DELETE CASCADE`.
+
+**Estado productivo verificado:** en `dh_equipos.users` permanecen exactamente dos cuentas activas, Dario y David Hervier, ambas con rol `OWNER`; `dh_equipos.clientes` y `dh_equipos.clientes_direcciones` quedaron vacías. Se conservó la categoría del proyecto, la configuración existente y los demás datos ajenos a Usuarios.
+
+**Respaldo previo:** `dh_equipos._respaldo_usuarios_pre_limpieza_20261009` (19 registros JSONB: 5 usuarios, 7 clientes y 7 direcciones). Contiene hashes de contraseña y debe permanecer bajo acceso administrativo; no exportar a documentos ni registros públicos. La limpieza se ejecutó de forma atómica con validaciones de roles, IDs, cantidad de datos, integridad y estado final. Cualquier recuperación deberá evaluar los cambios posteriores antes de reinsertar registros.
+
+La API actual `50 - Usuarios - API` implementa alta/edición y activación/desactivación, **no eliminación definitiva**; esta limpieza se aplicó directamente en PostgreSQL sin modificar los workflows.
