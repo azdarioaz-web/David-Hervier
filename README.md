@@ -12,7 +12,7 @@ Componentes verificados e implementados:
 - Cookie Guard con sesiones persistentes;
 - PostgreSQL en ServerDockers, base `enredados`, schema dedicado `dh_equipos`;
 - backend/orquestación en n8n;
-- módulo **Equipamientos**;
+- módulo **Equipamientos** (una ficha por máquina, sin catálogo independiente de modelos);
 - módulo **Usuarios**;
 - módulo **Agenda**;
 - categoría inicial **Estética**.
@@ -22,6 +22,7 @@ Componentes verificados e implementados:
 - [Arquitectura](docs/arquitectura.md)
 - [Seguridad y login](docs/seguridad-login.md)
 - [Módulo Equipamientos](docs/modulos/equipamientos.md)
+- [Identidad y contrato visual DH](design-system/DESIGN.md)
 - [Módulo Usuarios](docs/modulos/usuarios.md)
 - [Módulo Agenda](docs/modulos/agenda.md)
 
