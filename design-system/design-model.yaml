@@ -62,6 +62,14 @@ layouts:
   sidebar:
     expanded_width_px: 228
     compact_width_px: 62
+    compact_width_mobile_px: 56
+    expanded_width_mobile_px: 210
+    mobile_breakpoint_px: 900
+    expansion_mode: overlay
+    position: fixed
+    content_reserved_width: compact_only
+    content_reflow_on_expand: false
+    expanded_by: [hover, focus_within]
 domain_rules:
   equipamientos:
     within_alquiler_tabs: [Equipos, Categorías]
