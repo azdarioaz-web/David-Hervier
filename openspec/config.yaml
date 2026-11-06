@@ -21,6 +21,7 @@ rules:
   specs:
     - "Especificar comportamiento observable, casos positivos y negativos, permisos y auditoría aplicable."
     - "Definir qué funciones existentes deben seguir funcionando y cómo verificarlo."
+    - "Los requisitos se escriben en español, incluyendo MUST o SHALL como palabra normativa para la validación estricta de OpenSpec."
   design:
     - "Relacionar módulos, endpoints, workflows, tablas, integraciones y puntos de reversión relevantes."
     - "No crear arquitectura nueva sin justificarla frente al diseño vigente."
