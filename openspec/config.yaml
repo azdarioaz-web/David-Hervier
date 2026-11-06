@@ -1,0 +1,39 @@
+# OpenSpec - David Hervier — alquiler de equipos
+schema: spec-driven
+context: |
+  Leer README.md, docs/arquitectura.md, docs/seguridad-login.md y design-system/DESIGN.md según el cambio.
+  Mantener el esquema dh_equipos, guard de sesión y separación de módulos de Equipamientos, Usuarios y Agenda.
+  No introducir características de otros productos ni modificar contratos de reservas sin comprobar consumidores.
+  Escribir propuestas, especificaciones, diseños y tareas en español.
+  Antes de trabajar, leer las reglas compartidas de Memorias: https://github.com/azdarioaz-web/Memorias/blob/main/INSTRUCCIONES_CHATGPT.md.
+  Memorias es normativa; no copiar su contenido completo ni reemplazar la documentación particular del producto.
+  GitHub documenta el estado confirmado; Obsidian es memoria operativa; Graphify es índice derivado. Los MCP/runtime son fuente de verdad del estado dinámico.
+  Inspeccionar el componente y su versión activa antes de proponer una corrección; limitar el alcance al defecto confirmado.
+  Priorizar cambios pequeños, seguros, reversibles y compatibles. No ejecutar cambios, desplegar ni modificar producción como consecuencia automática de una especificación.
+  Toda escritura persistente debe contemplar auditoría de actor o proceso, operación, fecha, entidad y diferencias, sin registrar secretos.
+  Para HTML/CSS/UI consultar y mantener el Design System vigente; no emplear alert/confirm/prompt nativos para diálogos controlados por la aplicación.
+  Para n8n, verificar el workflow activo y aplicar cambios en caliente mediante herramientas/API autorizadas; no usar import/publicación CLI ni reiniciar rutinariamente.
+  No almacenar secretos, credenciales, cookies, URLs privadas ni datos personales innecesarios en artefactos de OpenSpec.
+rules:
+  proposal:
+    - "Indicar producto, módulo, estado actual confirmado, problema, alcance y exclusiones."
+    - "Enumerar dependencias y riesgos antes de recomendar implementación."
+  specs:
+    - "Especificar comportamiento observable, casos positivos y negativos, permisos y auditoría aplicable."
+    - "Definir qué funciones existentes deben seguir funcionando y cómo verificarlo."
+  design:
+    - "Relacionar módulos, endpoints, workflows, tablas, integraciones y puntos de reversión relevantes."
+    - "No crear arquitectura nueva sin justificarla frente al diseño vigente."
+  tasks:
+    - "Dividir en cambios mínimos independientes y verificación de cada cambio."
+    - "Incluir pruebas de permisos, fallos, datos/auditoría, regresión y UI/móvil cuando corresponda."
+    - "Prever actualización de GitHub, Obsidian y comprobación de Graphify al finalizar."
+operations:
+  apply:
+    guidance:
+      - "No aplicar ni publicar cambios productivos sin autorización y revisión del estado real."
+      - "Tras cada modificación, verificar comportamiento y ausencia de regresiones; no afirmar éxito sin evidencia."
+  archive:
+    guidance:
+      - "Archivar únicamente cambios implementados y verificados; registrar pruebas, pendientes y referencia GitHub."
+      - "Actualizar memoria operativa Obsidian y verificar sincronización Graphify cuando corresponda."
